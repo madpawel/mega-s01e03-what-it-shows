@@ -4,7 +4,7 @@ title: '0002 · Split #4471 and triage by cause'
 owner: madpawel
 status: proposed
 reviewed: '2026-10-29'
-signature: 'madpawel / MEGA S01E03 / harness-assisted'
+signature: 'v1.eyJzdWIiOiI2MzciLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzMwNjk4MCwiZXhwIjoxNzkzMzkzMzgwfQ.W9BlXnG52v1LiocJAv1AGy46r757z1lA9gjtpAmxCDU'
 ---
 
 <script>

@@ -32,6 +32,10 @@ check('all five dedupe counterexamples run correctly', () => {
   assert.deepEqual(DEDUPE_CASES.map(c=>sameCause(c.a,tenantOf(c.a),c.b,tenantOf(c.b))),[true,false,false,true,false]);
 });
 const route='/kb/decisions/0002-triage-by-cause';
+const source=fs.readFileSync('src/routes'+route+'/+page.svx','utf8');
+const signature=source.match(/^signature: '([^']+)'$/m)?.[1];
+assert(signature, 'The new page must carry its course-issued signature');
+const expectedRef=deskRef(signature);
 const html=fs.readFileSync('rendered'+route+'/index.html','utf8');
 check('real rendered page contains computed counts and footnote',()=>{
   assert.match(html,/<strong>412<\/strong>/);
@@ -42,8 +46,7 @@ check('real rendered page contains computed counts and footnote',()=>{
   assert.match(html,/hint ×18 · parser ×15/);
 });
 check('frontmatter reaches RenderStamp and derives the reference',()=>{
-  assert.equal(deskRef('madpawel / MEGA S01E03 / harness-assisted'),'DR-DQ5R-MEEX');
-  assert(html.includes(deskRef('madpawel / MEGA S01E03 / harness-assisted')));
+  assert(html.includes(expectedRef));
   assert(!html.includes('no desk ref:'));
 });
 check('all KB routes render and the index discovers the new page',()=>{
@@ -64,5 +67,5 @@ check('all original exported files remain byte-identical',()=>{
   }
 });
 const hash=createHash('sha256').update(html).digest('hex');
-fs.writeFileSync('verification.json',JSON.stringify({checks,route,deskRef:deskRef('madpawel / MEGA S01E03 / harness-assisted'),renderedSha256:hash,generatedAt:new Date().toISOString()},null,2)+'\n');
+fs.writeFileSync('verification.json',JSON.stringify({checks,route,deskRef:expectedRef,renderedSha256:hash,generatedAt:new Date().toISOString()},null,2)+'\n');
 console.log(`${checks.length} checks passed`);

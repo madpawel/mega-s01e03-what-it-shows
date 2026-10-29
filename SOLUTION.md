@@ -45,11 +45,12 @@ All original export files, including accepted decision 0001, remain unchanged.
 The new decision is proposed, not falsely labelled adopted by the support desk.
 No production system was changed.
 
-The page signature is `madpawel / MEGA S01E03 / harness-assisted`.
+The page frontmatter carries the exact course-issued publication signature, as required by the challenge.
 Its desk ref is derived by the exported RenderStamp component, not typed into the page.
 
 ## Privacy
 
 Only the course-provided KB, added source/build files and generated public-page assets belong here.
-No account credentials, sign-in links, course receipts, private browser captures or agent logs
+The course explicitly requires its publication signature in the page frontmatter; the account owner approved that disclosure.
+No account credentials, sign-in links, unrelated course receipts, private browser captures or agent logs
 are part of the deliverable.
