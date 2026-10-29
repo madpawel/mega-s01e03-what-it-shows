@@ -1,0 +1,89 @@
+---
+layout: runbook
+title: '0002 · Split #4471 and triage by cause'
+owner: madpawel
+status: proposed
+reviewed: '2026-10-29'
+signature: 'madpawel / MEGA S01E03 / harness-assisted'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Decision and status
+
+Proposed replacement for [decision 0001](/kb/decisions/0001-dedupe-by-subject).
+Keep that accepted record unchanged as history. The desk must not continue merging by
+subject alone while a parser fix is queued: a matching symptom can hide a different cause.
+
+The [original incident page](/kb/incidents/4471) says “one issue, one fix queued.”
+Its computed views contradict that conclusion. The following views use the exported data,
+not the age or confidence of the prose. They are not a live connection to the desk.
+
+## What belongs in each ticket
+
+<CauseTable ticket={4471} />
+
+- **Parser:** the shared parser reads month first although the tenant writes day first.
+  Correct the parsing contract; test app, email and eligible booking-v2 form inputs.
+- **Hint:** booking-v3 prints `MM/DD/YYYY` for day-first tenants, but its form reads
+  the tenant's way. Correct the displayed hint and form contract independently of the parser.
+- The five reports noted as a one-day move remain counted under their computed tenant-based
+  cause and are footnoted in the table. Symptom wording alone does not establish a third bug.
+  Preserve those observations for follow-up rather than dropping them.
+
+One GitHub issue per cause records its unique report count:
+[shared parser](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/2) and
+[booking-v3 hint](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/1).
+No production fix or desk-side split has been performed by writing this page.
+
+## Counting and attribution
+
+Deduplicate overlapping export pages by report ID, then select reports merged into this ticket.
+Use the tenant directory's locale and booking form with the report's channel.
+Do not classify by browser locale, subject, or intake tag: the tagged-as column
+shows the intake guesses disagree with the cause.
+
+The source of truth for these calculations is `src/lib/kb/causes.ts`, together with
+`locales.ts`, tenant JSON and `reports-4471.json`. Counts are computed at render time;
+a future export can change them without rewriting a paragraph.
+
+## When the problem arrived, and when the desk merged it
+
+<QueueTimeline ticket={4471} />
+
+Read the received and merged bars separately. The large early-July merge bar records
+backlog consolidation, not a sudden onset of the incident. Reports arrived earlier and
+continue afterwards. Fixing how the desk labels a ticket does not stop new reports.
+
+The chart uses Monday–Sunday weeks and the source date portion of each timestamp,
+as implemented in `QueueTimeline.svelte`; it does not convert those dates to UTC.
+
+## Replacement triage procedure
+
+1. Collapse repeated report IDs. Preserve the original body and time fields.
+2. Resolve the tenant from the directory. Check its actual locale and booking form.
+3. Compare causes using the channel and tenant configuration, not the subject.
+4. Same known cause: merge into that cause's ticket. Different causes: keep separate.
+5. Unknown tenant or unplaced cause: investigate; never merge simply because subjects match.
+6. Recompute counts and re-read the evidence when the desk or tenant configuration changes.
+   Keep this export's scope distinct from a claim about the live queue.
+
+<DedupeExplorer />
+
+App and email can be the same cause despite different subjects.
+The same subject at one tenant can be different causes across app and form.
+Different tenants can also use different forms. The examples above execute these checks.
+
+## Consequences
+
+Engineering gets independent fixes with auditable report counts.
+The desk must read enough context to identify a cause, rather than saving time by
+silently mixing unrelated reports. Keep accepted decision history intact; update the
+triage instructions only after this replacement is adopted and reviewed.
+
+<RenderStamp {signature} />
