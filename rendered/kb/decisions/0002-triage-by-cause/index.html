@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--e2jw2j--><!----><title>0002 · Split #4471 and triage by cause · support kb</title>
-  <script type="module" crossorigin src="/assets/index-CQHtzZD-.js"></script>
+  <script type="module" crossorigin src="/assets/index-BrVn0hr7.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-CseOuqsE.css">
 </head>
 <body>
@@ -17,7 +17,11 @@ Correct the parsing contract; test app, email and eligible booking-v2 form input
 the tenant’s way. Correct the displayed hint and form contract independently of the parser.</li> <li>The five reports noted as a one-day move remain counted under their computed tenant-based
 cause and are footnoted in the table. Symptom wording alone does not establish a third bug.
 Preserve those observations for follow-up rather than dropping them.</li></ul> <p>One GitHub issue per cause records its unique report count: <a href="https://github.com/madpawel/mega-s01e03-what-it-shows/issues/2" rel="nofollow">shared parser</a> and <a href="https://github.com/madpawel/mega-s01e03-what-it-shows/issues/1" rel="nofollow">booking-v3 hint</a>.
-No production fix or desk-side split has been performed by writing this page.</p> <h2>Counting and attribution</h2> <p>Deduplicate overlapping export pages by report ID, then select reports merged into this ticket.
+No production fix was performed by this harness.</p> <h2>Engineering outcome — desk update</h2> <p>The <a href="https://hq.mega.dev/challenges/what-it-shows" rel="nofollow">course’s engineering update</a> now reports that #4471 closed on 5 October:</p> <ul><li><strong>Parser: fixed.</strong> Engineering’s change is <code>fix(dates): parse dd/mm for eu locales</code>.
+The <a href="https://github.com/madpawel/mega-s01e03-what-it-shows/issues/2" rel="nofollow">parser issue</a> is closed as completed.</li> <li><strong>Hint: won’t fix.</strong> The booking-v3 form was retired, rather than its hint being fixed.
+The <a href="https://github.com/madpawel/mega-s01e03-what-it-shows/issues/1" rel="nofollow">hint issue</a> is closed as not planned. Retirement is not a shipped correction to the old form.</li></ul> <p>This update was read on 29 October 2026. It is newer than the 4 October data export;
+the views below remain historical report counts, not a live unresolved queue.
+The proposed triage-rule replacement is separate from these engineering outcomes.</p> <h2>Counting and attribution</h2> <p>Deduplicate overlapping export pages by report ID, then select reports merged into this ticket.
 Use the tenant directory’s locale and booking form with the report’s channel.
 Do not classify by browser locale, subject, or intake tag: the tagged-as column
 shows the intake guesses disagree with the cause.</p> <p>The source of truth for these calculations is <code>src/lib/kb/causes.ts</code>, together with <code>locales.ts</code>, tenant JSON and <code>reports-4471.json</code>. Counts are computed at render time;

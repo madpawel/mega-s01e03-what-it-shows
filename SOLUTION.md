@@ -10,6 +10,14 @@ Work in progress for the MEGA.dev course. Local verification is not course accep
 - [Shared parser issue — 379 reports](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/2).
 - [booking-v3 hint issue — 33 reports](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/1).
 
+## Engineering outcome
+
+After the first ticket submission, the course page published a newer desk update for 5 October:
+the parser was fixed (`fix(dates): parse dd/mm for eu locales`), while the booking-v3 hint
+was not fixed because that form was retired. The parser ticket is therefore completed;
+the hint ticket is closed as not planned. The signed KB page records these distinct outcomes.
+The report counts remain a snapshot of the earlier 4 October export.
+
 ## Reproduce
 
 Use Node 26 (TypeScript type stripping is used by the analysis and verification scripts).

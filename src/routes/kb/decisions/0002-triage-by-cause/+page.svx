@@ -39,7 +39,23 @@ not the age or confidence of the prose. They are not a live connection to the de
 One GitHub issue per cause records its unique report count:
 [shared parser](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/2) and
 [booking-v3 hint](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/1).
-No production fix or desk-side split has been performed by writing this page.
+No production fix was performed by this harness.
+
+## Engineering outcome — desk update
+
+The [course's engineering update](https://hq.mega.dev/challenges/what-it-shows)
+now reports that #4471 closed on 5 October:
+
+- **Parser: fixed.** Engineering's change is `fix(dates): parse dd/mm for eu locales`.
+  The [parser issue](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/2)
+  is closed as completed.
+- **Hint: won't fix.** The booking-v3 form was retired, rather than its hint being fixed.
+  The [hint issue](https://github.com/madpawel/mega-s01e03-what-it-shows/issues/1)
+  is closed as not planned. Retirement is not a shipped correction to the old form.
+
+This update was read on 29 October 2026. It is newer than the 4 October data export;
+the views below remain historical report counts, not a live unresolved queue.
+The proposed triage-rule replacement is separate from these engineering outcomes.
 
 ## Counting and attribution
 
